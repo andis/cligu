@@ -1,0 +1,72 @@
+* cligu
+Manage users and groups using a fancy syntax.
+
+CLI for Groups and Users is a thin wrapper around the activeldap gem for environments that store their posix users and groups in openldap.
+
+** Usage
+: cligu [options] [command:user_or_group[operator<groups_or_users>][:attribute=value]*]*
+
+Operators are:
+- =+= add user to listed groups or members to group
+- = explicitly set groups or members
+- =%= remove a user from the listed groups or members from a group
+
+Attributes are passed directly to LDAP.
+
+Commands are idempotent and can be combined in any order.
+
+*** Examples
+- add the users bob, jon, and ron to the group "staff"
+: cligu group:staff+bob,jon,ron
+
+- remove jon and jack from the group "authors":
+: cligu group:authors%jon,jack
+
+- add the user alice to the group "staff" and change the login shell and mail address:
+: cligu user:alice+staff.loginshell:/bin/zsh:mail=alice@example.com
+
+which may need the following LDAP-ACL to work:
+: access to attrs=loginshell,mail
+:     by self write
+:     by * break
+
+
+- With the following command and LDAP-ACL, all members of any group with the decription "selfsustained" can add or remove members to their group:
+: cligu group:grassroots:description=selfsustained
+
+: access to dn.sub="ou=groups,dc=example,dc=com" filter=(description=selfsustained) attr=memberUid
+:     by set="this/memberUid & user/uid" manage
+:     by *
+:     break
+
+** Requirements
+- The gems activeldap and ruby-ldap (see Gemfile).
+- Currently, authentication is handled via Kerberos, so a working LDAP&Kerberos-Environment
+- probably more
+
+
+** Configuration
+Right now, the subtree of groups and users is configurable via =/etc/cligu.json= or =~/.cligu.json=, the default being
+
+#+BEGIN_EXAMPLE
+{                                                           
+    "ldap": 
+    {
+        "groups": {
+                "prefix": "ou=groups"
+            },
+        "people": {
+                "prefix": "ou=people"
+            }
+    }
+}
+#+END_EXAMPLE
+
+** Plans
+- commands to create&remove users and groups
+- a listing mode to replace "getent groups" or "ldapsearch"
+- more configuration options
+
+** Copyright
+
+Copyright (c) 2010 Andi Fink. See LICENSE for details.
