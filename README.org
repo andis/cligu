@@ -23,7 +23,7 @@ Commands are idempotent and can be combined in any order.
 : cligu group:authors%jon,jack
 
 - add the user alice to the group "staff" and change the login shell and mail address:
-: cligu user:alice+staff.loginshell:/bin/zsh:mail=alice@example.com
+: cligu user:alice+staff:loginshell:/bin/zsh:mail=alice@example.com
 
 which may need the following LDAP-ACL to work:
 : access to attrs=loginshell,mail
