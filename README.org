@@ -13,7 +13,7 @@ Operators are:
 
 Attributes are passed directly to LDAP.
 
-Commands are idempotent and can be combined in any order.
+Also try =cligu --irb=
 
 *** Examples
 - add the users bob, jon, and ron to the group "staff"
@@ -46,27 +46,13 @@ which may need the following LDAP-ACL to work:
 
 
 ** Configuration
-Right now, the subtree of groups and users is configurable via =/etc/cligu.json= or =~/.cligu.json=, the default being
-
-#+BEGIN_EXAMPLE
-{                                                           
-    "ldap": 
-    {
-        "groups": {
-                "prefix": "ou=groups"
-            },
-        "people": {
-                "prefix": "ou=people"
-            }
-    }
-}
-#+END_EXAMPLE
+Configuration files are evaled in this order:
+ENV['CLIGUCONF'], /etc/cligu_conf.rb, /etc/cligu.d/*_conf.rb, ~/.local/share/cligu/*_conf.rb, ~/.cligu_conf.rb
 
 ** Plans
-- commands to create&remove users and groups
-- a listing mode to replace "getent groups" or "ldapsearch"
-- more configuration options
+- Extend documentation
+- Authentication via Username+Password
 
 ** Copyright
 
-Copyright (c) 2010 Andi Fink. See LICENSE for details.
+Copyright (c) 2010-2012 Andi Fink. See LICENSE for details.
