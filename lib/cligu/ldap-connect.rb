@@ -57,11 +57,11 @@ module Cligu
     end
   end
 
-  class People < ActiveLdap::Base
+  class Users < ActiveLdap::Base
     this_class = name.split('::').last.downcase
 
     ldap_options =
-      Config::Global.ldap_config.reverse_merge this_class => { "prefix" => "ou=#{this_class}" }
+      Config::Global.ldap_config.reverse_merge this_class => { "prefix" => "ou=People" }
 
     ldap_mapping :dn_attribute => 'uid',
     :prefix => ldap_options[this_class]['prefix'],

@@ -16,7 +16,7 @@ module Cligu
     describe '::parse with banner examples' do
       it 'parses user:alice+staff' do
         expected = {
-          :context => People,
+          :context => Users,
           :name => 'alice',
           :jobs => [['add', ['staff']]]
         }
@@ -27,7 +27,7 @@ module Cligu
 
       it 'parses user:alice:loginshell=/bin/zsh' do
         expected = {
-          :context => People,
+          :context => Users,
           :name => 'alice',
           :jobs => [['loginshell=', ['/bin/zsh']]]
         }
@@ -60,7 +60,7 @@ module Cligu
 
       it 'parses user:foouser:to_ldif' do
         expected = {
-          :context => People,
+          :context => Users,
           :name => 'foouser',
           :jobs => [['to_ldif']]
         }
@@ -71,7 +71,7 @@ module Cligu
 
       it 'parses user:foouser=foogroup:key=value1,value2,value3:to_ldif' do
         expected = {
-          :context => People,
+          :context => Users,
           :name => 'foouser',
           :jobs => [['set', ['foogroup']],['key=', ['value1', 'value2', 'value3']], ['to_ldif']]
         }
