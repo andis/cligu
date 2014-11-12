@@ -66,7 +66,7 @@ module Cligu
     ldap_mapping :dn_attribute => 'uid',
     :prefix => ldap_options[this_class]['prefix'],
     :classes => ['inetOrgPerson', 'posixAccount']
-    belongs_to :ldapgroups, :class_name => Groups.to_s, :many => 'memberUid', :primary_key => 'uid'
+    belongs_to :ldapgroups, :class => Groups, :many => 'memberUid', :primary_key => 'uid'
 
     Cligu.contexts.register(self, 'user')
 
@@ -77,7 +77,7 @@ module Cligu
     end
 
     def groups=(gg = [])
-      self.ldapgroups = Group.find(Array(gg))
+      self.ldapgroups = Groups.find(Array(gg))
       groups
     end
 
