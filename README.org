@@ -18,8 +18,6 @@ Operators are:
 
 Attributes are passed directly to LDAP.
 
-Also try =cligu --irb=
-
 *** Examples
 - list all users and groups
 : cligu list:users list:groups
@@ -47,11 +45,23 @@ which may need the following LDAP-ACL to work:
 :     by *
 :     break
 
+** Cligu IRB Repl Mode Console
+Run =cligu --irb= to get the Cligu Console.
+
+Here you have direct access to Activeldap:
+*Examples:*
+: f = Users.find('funky')
+: f.homedirectory = '/home/funky'
+: f.save
+
+: n = Users.new('neo')
+: n.save
+: pp n.errors ;nil
+
 ** Requirements
 - The gems activeldap and ruby-ldap (see Gemfile).
 - Currently, authentication is handled via Kerberos, so a working LDAP&Kerberos-Environment
 - probably more
-
 
 ** Configuration
 Configuration files are evaled in this order:
@@ -60,6 +70,8 @@ ENV['CLIGUCONF'], /etc/cligu_conf.rb, /etc/cligu.d/*_conf.rb, ~/.local/share/cli
 ** Plans
 - Extend documentation
 - Authentication via Username+Password
+- Syntax for creating users, groups
+- Drop dependency on activeldap
 
 ** Copyright
 

@@ -3,4 +3,6 @@
 
 require 'cligu'
 
-Cligu::Cli.new.run
+if File.basename(__FILE__) == File.basename($PROGRAM_NAME)
+  Cligu::Cli.new.run
+end

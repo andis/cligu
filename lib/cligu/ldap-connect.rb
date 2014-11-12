@@ -84,11 +84,11 @@ module Cligu
     alias_method :set, :groups=
 
     def add( m=[] )
-      self.groups |= m
+      self.groups |= Array(m)
     end
 
     def del( m=[] )
-      self.groups -= m
+      self.groups -= Array(m)
     end
   end
 end

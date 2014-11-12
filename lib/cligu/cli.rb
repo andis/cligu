@@ -52,12 +52,20 @@ EOT
         @connect = d
       end
 
+      # as described here: http://jasonroelofs.com/2009/04/02/embedding-irb-into-your-ruby-application/
       opts.on('--irb', 'drop into irb session') do
         require 'irb'
+
         Connect.ldap_connect if @connect
         ARGV.clear
-        IRB.start
-        catch(:IRB_EXIT) { @exit = true }
+        IRB.setup(nil)
+        workspace = IRB::WorkSpace.new(Cligu.class_eval { binding })
+        irb = IRB::Irb.new(workspace)
+        IRB.conf[:MAIN_CONTEXT] = irb.context
+
+        catch(:IRB_EXIT) { irb.eval_input }
+
+        @exit = true
       end
 
       opts.on_tail("--version", "Show version") do
