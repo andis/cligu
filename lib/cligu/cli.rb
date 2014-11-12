@@ -23,7 +23,7 @@ class Cligu::Cli
   def parse_argv(argv = @argv)
     OptionParser.new do |opts|
       opts.banner = <<-"EOT"
-Usage: #{File.basename __FILE__} [options] [group:<name>[+=%members][#{FS}attribute=value]*] [user:<name>[+=%groups][#{FS}attribute=value]*]
+Usage: #{File.basename $0} [options] [group:<name>[+=%members][#{FS}attribute=value]*] [user:<name>[+=%groups][#{FS}attribute=value]*]
 
 Examples:
 group:staff+bob,jon,ron group:authors%jon,jack

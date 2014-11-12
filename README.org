@@ -31,7 +31,7 @@ which may need the following LDAP-ACL to work:
 :     by * break
 
 
-- With the following command and LDAP-ACL, all members of any group with the decription "selfsustained" can add or remove members to their group:
+- With the following command and LDAP-ACL, all members of any group with the description "selfsustained" can add or remove members to their group:
 : cligu group:grassroots:description=selfsustained
 
 : access to dn.sub="ou=groups,dc=example,dc=com" filter=(description=selfsustained) attr=memberUid
@@ -55,4 +55,4 @@ ENV['CLIGUCONF'], /etc/cligu_conf.rb, /etc/cligu.d/*_conf.rb, ~/.local/share/cli
 
 ** Copyright
 
-Copyright (c) 2010-2012 Andi Fink. See LICENSE for details.
+Copyright (c) 2010-2014 Andi Fink. See LICENSE for details.

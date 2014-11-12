@@ -1,2 +1,4 @@
 README.html
 vendor/
+.bundle
+Gemfile.lock
