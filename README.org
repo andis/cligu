@@ -6,6 +6,11 @@ CLI for Groups and Users is a thin wrapper around the activeldap gem for environ
 ** Usage
 : cligu [options] [command:user_or_group[operator<groups_or_users>][:attribute=value]*]*
 
+Commands are:
+- user
+- group
+- list:users and list:groups
+
 Operators are:
 - =+= add user to listed groups or members to group
 - = explicitly set groups or members
@@ -16,6 +21,9 @@ Attributes are passed directly to LDAP.
 Also try =cligu --irb=
 
 *** Examples
+- list all users and groups
+: cligu list:users list:groups
+
 - add the users bob, jon, and ron to the group "staff"
 : cligu group:staff+bob,jon,ron
 

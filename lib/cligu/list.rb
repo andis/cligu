@@ -6,11 +6,11 @@ module Cligu
       case arg
       when /users?/
         attributes = %w(uidNumber gidNumber cn homeDirectory loginShell)
-        puts Person.search(:attributes => attributes).map {|per| ([per.last['cn'], '*'] + attributes.map { |a| per.last[a] }).join(':') }
-        Person
+        puts People.search(:attributes => attributes).map {|per| ([per.last['cn'], '*'] + attributes.map { |a| per.last[a] }).join(':') }
+        People
       when /groups?/
-        puts Group.all.map {|g| "#{g.cn}:*:#{g.gidnumber}:#{g.members.join ','}" }
-        Group
+        puts Groups.all.map {|g| "#{g.cn}:*:#{g.gidnumber}:#{g.members.join ','}" }
+        Groups
       end
     end
   end
