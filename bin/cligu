@@ -5,4 +5,6 @@ require 'cligu'
 
 if File.basename(__FILE__) == File.basename($PROGRAM_NAME)
   Cligu::Cli.new.run
+else
+  Cligu::Connect.ldap_connect
 end
