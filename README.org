@@ -60,12 +60,15 @@ Here you have direct access to Activeldap:
 
 ** Requirements
 - The gems activeldap and ruby-ldap (see Gemfile).
+- on Debian/Ubuntu, the gem ruby-ldap needs the packages: =build-essential libldap2-dev libsasl2-dev=
 - Currently, authentication is handled via Kerberos, so a working LDAP&Kerberos-Environment
 - probably more
 
 ** Configuration
+Cligu tries to guess connection details from =/etc/ldap/ldap.conf /etc/ldap.conf ~/.ldaprc ENV['LDAPRC']=
+
 Configuration files are evaled in this order:
-ENV['CLIGUCONF'], /etc/cligu_conf.rb, /etc/cligu.d/*_conf.rb, ~/.local/share/cligu/*_conf.rb, ~/.cligu_conf.rb
+: /etc/cligu_conf.rb, /etc/cligu.d/*_conf.rb, ~/.cligu_conf.rb, ~/.local/share/cligu/*_conf.rb, ENV['CLIGUCONF']
 
 ** Plans
 - Extend documentation

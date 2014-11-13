@@ -9,12 +9,12 @@ module Cligu
 
     DEFAULT = {
       :cligu_configfiles => [
-                             ENV['CLIGUCONF'] &&
-                               File.expand_path(ENV['CLIGUCONF']) || '',
                              '/etc/cligu_conf.rb',
                              '/etc/cligu.d/*_conf.rb',
-                             File.expand_path('~/.local/share/cligu/*_conf.rb'),
                              File.expand_path('~/.cligu_conf.rb'),
+                             File.expand_path('~/.local/share/cligu/*_conf.rb'),
+                             ENV['CLIGUCONF'] &&
+                               File.expand_path(ENV['CLIGUCONF']) || '',
                             ],
       :ldap_configfiles => [
                              '/etc/ldap/ldap.conf',
